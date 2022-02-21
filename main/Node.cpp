@@ -6,6 +6,7 @@ Node::Node( int x, int y ) {
     m_pathX = NULL;
     m_pathY = NULL;
     m_parent = NULL;
+    cost=0;
   }
 
  Node::~Node(){}

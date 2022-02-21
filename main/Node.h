@@ -8,6 +8,7 @@ class Node
     Node* m_pathX;
     Node* m_pathY;
     Node* m_parent;
+    int cost;
 
   public : 
     Node ( int x, int y );
