@@ -1,8 +1,8 @@
 #include "Node.h"
 
-Node::Node( int x, int y ) {
-    m_x = x;
-    m_y = y;
+Node::Node( int x_, int y_ ) {
+    x = x_;
+    y = y_;
     m_pathX = NULL;
     m_pathY = NULL;
     m_parent = NULL;

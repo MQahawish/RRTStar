@@ -3,15 +3,14 @@
 
 class Node
 {
-    int m_x;
-    int m_y;
+    public :
+    int x;
+    int y;
     Node* m_pathX;
     Node* m_pathY;
     Node* m_parent;
-    int cost;
-
-  public : 
-    Node ( int x, int y );
+    int cost; 
+    Node ( int x_, int y_ );
     ~Node();
 };
 
