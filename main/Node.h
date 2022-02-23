@@ -4,13 +4,13 @@
 class Node
 {
     public :
-    int x;
-    int y;
-    Node* m_pathX;
-    Node* m_pathY;
+    double x;
+    double y;
+    vector<double> m_pathX;
+    vector<double> m_pathY;
     Node* m_parent;
-    int cost; 
-    Node ( int x_, int y_ );
+    double cost; 
+    Node ( double x_, double y_ );
     ~Node();
 };
 
