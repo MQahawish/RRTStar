@@ -1,4 +1,5 @@
 class Obstacle{
+    public:
     float x;
     float y;
     float size;
