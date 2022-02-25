@@ -10,7 +10,7 @@ class Node
     vector<double> m_pathY;
     Node* m_parent;
     double cost; 
-    Node ( double x_, double y_ );
+    Node (double x_,double y_ );
     ~Node();
 };
 

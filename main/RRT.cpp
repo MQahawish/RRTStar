@@ -5,7 +5,7 @@ RRTstar::RRTstar(Node start_, Node goal_, vector<Obstacle> obstacles_, double ra
    start = start_;
    goal = goal_;
    obstacle_list = obstacles_;
-   rand_area_max = rand_area_max;
+   rand_area_max = rand_area_max_;
    rand_area_min = rand_area_min_;
    expand_dis = expand_dis_;
    path_resolution = path_resolution_;
@@ -16,26 +16,25 @@ RRTstar::RRTstar(Node start_, Node goal_, vector<Obstacle> obstacles_, double ra
    search_until_max_iter = search_until_max_iter_;
 }
 
-float RRTstar::calcDistance(Node from, Node to)
+double RRTstar::calcDistance(Node from, Node to)
 {
-   float dx = to.x - from.x;
-   float dy = to.y - from.x;
-   float d = hypot(dx, dy);
-   return d;
+   double dx = to.x - from.x;
+   double dy = to.y - from.y;
+   return hypot(dx, dy);
 }
 
-float RRTstar::calcAngle(Node from, Node to)
+double RRTstar::calcAngle(Node from, Node to)
 {
-   float dx = to.x - from.x;
-   float dy = to.y - from.x;
-   float angle = atan2(dx, dy);
-   return angle;
+   double dx = to.x - from.x;
+   double dy = to.y - from.y;
+ //  double angle = atan2(dx, dy);
+   return atan2(dx, dy);
 }
 
-float RRTstar::calcDistToGoal(int x, int y)
+double RRTstar::calcDistToGoal(int x, int y)
 {
-   float dx = goal.x - x;
-   float dy = goal.y - y;
+   double dx = goal.x - x;
+   double dy = goal.y - y;
    return hypot(dx, dy);
 }
 
@@ -52,29 +51,21 @@ bool RRTstar::checkCollision(Node node)
    for (auto obstacle : obstacle_list)
    {
       for (double x : node.m_pathX)
-      {
          x_dist.push_back(obstacle.x - x);
-      }
+     
       for (double y : node.m_pathY)
-      {
          y_dist.push_back(obstacle.y - y);
-      }
+      
       for (int i = 0; i < node.m_pathX.size(); i++)
-      {
          dist.push_back(x_dist[i] * x_dist[i] + y_dist[i] * y_dist[i]);
-      }
+      
       double min = 0;
       for (double v : dist)
-      {
          if (v < min)
-         {
             min = v;
-         }
-      }
+   
       if (min < obstacle.size * obstacle.size)
-      {
          return false;
-      }
       x_dist.clear();
       y_dist.clear();
       dist.clear();
@@ -101,7 +92,7 @@ Node RRTstar::getRandomNode()
       rand_node.y = y;
    }
    else
-{
+   {
       rand_node.x = goal.x;
       rand_node.y = goal.y;
    }
@@ -110,7 +101,7 @@ Node RRTstar::getRandomNode()
 
 int RRTstar::getNearestNodeIndex(vector<Node> nodes, Node ran_Node)
 {
-   float dist = 0, index = -1, cnt = 0;
+   double dist = 0, index = -1, cnt = 0;
    for (auto node : nodes)
    {
       double currnetDist = calcDistance(node, ran_Node);
@@ -185,9 +176,8 @@ int RRTstar::searchBestGoalNode()
    for (int i = 0; i < distToGoalList.size(); i++)
    {
       if (distToGoalList[i] < expand_dis)
-      {
          goalInds.push_back(i);
-      }
+      
    }
    for (auto goalInd : goalInds)
    {
@@ -227,7 +217,7 @@ Node* RRTstar::chooseParent(Node new_node, vector<double> near_node_inds)
       }
       else
       {
-         costs.push_back(std::numeric_limits<float>::max());
+         costs.push_back(std::numeric_limits<double>::max());
       }
    }
    double min_cost = 0, index;
@@ -238,7 +228,7 @@ Node* RRTstar::chooseParent(Node new_node, vector<double> near_node_inds)
          index = i;
       }
 
-   if (min_cost == std::numeric_limits<float>::max())
+   if (min_cost == std::numeric_limits<double>::max())
       return NULL;
 
    double min_ind = near_node_inds[index];
@@ -269,7 +259,7 @@ vector<double> RRTstar::findNearNodes(Node new_node)
    return near_inds;
 }
 
-Node* RRTstar::steer(Node from, Node to, double extend_length = std::numeric_limits<float>::max())
+Node* RRTstar::steer(Node from, Node to, double extend_length = std::numeric_limits<double>::max())
 {
    Node new_node(from.x, from.y);
    double distance = calcDistance(new_node, to);

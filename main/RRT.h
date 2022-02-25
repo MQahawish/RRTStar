@@ -32,13 +32,13 @@ class RRTstar {
    vector<Node>* Planning();
    Node* steer(Node A,Node B,double extend_length=std::numeric_limits<float>::max()); //+
    vector<Node>* generateFinalCourse(int goal_ind);  //+
-   float calcDistToGoal(int x,int y);  //+
+   double calcDistToGoal(int x,int y);  //+
    Node getRandomNode();  //+
    int getNearestNodeIndex(vector<Node> nodes,Node ran_Node);  //+
    bool checkIfOutsidePlayArea(Node node,Area playArea);  //+
    bool checkCollision(Node node);  //+
-   float calcDistance(Node from,Node to);  //+
-   float calcAngle(Node from,Node to);     //+
+   double calcDistance(Node from,Node to);  //+
+   double calcAngle(Node from,Node to);     //+
    vector<double> findNearNodes(Node node);  //+ 
    void rewire(Node node,vector<int> near_nodes_ind); //+
    int searchBestGoalNode();     //+

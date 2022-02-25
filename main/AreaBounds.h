@@ -3,10 +3,10 @@
 
 class Area {
   public :
-    float xmin;
-    float xmax;
-    float ymin;
-    float ymax;
+    double xmin;
+    double xmax;
+    double ymin;
+    double ymax;
     bool Free;
-  Area(float xmin_,float xmax_,float ymin_,float ymax_,bool Free_); 
+  Area(double xmin_,double xmax_,double ymin_,double ymax_,bool Free_); 
 };

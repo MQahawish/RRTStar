@@ -1,8 +1,8 @@
 class Obstacle{
     public:
-    float x;
-    float y;
-    float size;
-    Obstacle(float x_,float y_,float size_);
+    double x;
+    double y;
+    double size;
+    Obstacle(double x_,double y_,double size_);
     ~Obstacle();
 };

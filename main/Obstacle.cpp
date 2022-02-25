@@ -1,6 +1,6 @@
 #include "Obstacle.h"
 
-Obstacle::Obstacle(float x_,float y_,float size_){
+Obstacle::Obstacle(double x_,double y_,double size_){
      x=x_;
      y=y_;
      size=size_;
