@@ -27,7 +27,6 @@ double RRTstar::calcAngle(Node from, Node to)
 {
    double dx = to.x - from.x;
    double dy = to.y - from.y;
- //  double angle = atan2(dx, dy);
    return atan2(dx, dy);
 }
 
@@ -177,7 +176,6 @@ int RRTstar::searchBestGoalNode()
    {
       if (distToGoalList[i] < expand_dis)
          goalInds.push_back(i);
-      
    }
    for (auto goalInd : goalInds)
    {
@@ -212,13 +210,9 @@ Node* RRTstar::chooseParent(Node new_node, vector<double> near_node_inds)
       Node near_node = node_list[ind];
       Node *t_node = steer(new_node, near_node);
       if (t_node && checkCollision(*t_node))
-      {
-         costs.push_back(calcNewCost(near_node, *t_node));
-      }
+         costs.push_back(calcNewCost(near_node, *t_node)); 
       else
-      {
          costs.push_back(std::numeric_limits<double>::max());
-      }
    }
    double min_cost = 0, index;
    for (int i = 0; i < costs.size(); i++)
@@ -251,9 +245,8 @@ vector<double> RRTstar::findNearNodes(Node new_node)
    for (auto distance : distances)
    {
       if (distance < r ^ 2)
-      {
          near_inds.push_back(index);
-      }
+      
       index++;
    }
    return near_inds;
@@ -298,16 +291,14 @@ vector<Node>* RRTstar::Planning(){
       double nearest_ind=getNearestNodeIndex(node_list,rnd_node);
       Node nearest_node=node_list[nearest_ind];
       Node* new_node = steer(nearest_node,rnd_node,expand_dis);
-      if(checkCollision(*new_node)&&checkIfOutsidePlayArea(*new_node,play_Area)){
+      if(checkCollision(*new_node)&&checkIfOutsidePlayArea(*new_node,play_Area))
          node_list.push_back(*new_node);
-      }
+      
       if(calcDistToGoal(node_list.back().x,node_list.back().y)<=expand_dis)
       {
          Node* final_node=steer(node_list.back(),goal,expand_dis);
          if(checkCollision(*final_node))
-         {
-            return generateFinalCourse(node_list.size()-1);
-         }
+            return generateFinalCourse(node_list.size()-1);  
       }
       i++;
    }

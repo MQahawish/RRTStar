@@ -7,6 +7,6 @@ class Area {
     double xmax;
     double ymin;
     double ymax;
-    bool Free;
-  Area(double xmin_,double xmax_,double ymin_,double ymax_,bool Free_); 
+    bool Free; //flag 
+  Area(double xmin_,double xmax_,double ymin_,double ymax_,bool Free_); //Area constructor
 };
