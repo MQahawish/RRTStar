@@ -1,9 +1,9 @@
 #include "Obstacle.h"
 
-Obstacle::Obstacle(double x_,double y_,double size_){
+Obstacle::Obstacle(double x_,double y_,double radius_){
      x=x_;
      y=y_;
-     size=size_;
+     radius=radius_;
 }
 
 Obstacle::~Obstacle(){}
