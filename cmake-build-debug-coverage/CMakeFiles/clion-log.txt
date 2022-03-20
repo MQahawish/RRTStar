@@ -1,0 +1,5 @@
+"C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2021.3.4/bin/ninja/win/ninja.exe" -DCMAKE_CXX_FLAGS=--coverage -DCMAKE_C_FLAGS=--coverage -G Ninja C:\Users\97250\OneDrive\Documents\GitHub\RRTStar
+-- Could NOT find Python3 (missing: Python3_NumPy_INCLUDE_DIRS NumPy) (found version "3.10.3")
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/97250/OneDrive/Documents/GitHub/RRTStar/cmake-build-debug-coverage

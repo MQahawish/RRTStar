@@ -1,5 +1,6 @@
 #include "RRT.h"
 
+bool lineCollisionCheck(Node& first, Node& second, std::vector<Obstacle>& obstacles);
 
 RRTstar::RRTstar(Node& start_, Node& goal_, std::vector<Obstacle> obstacles_, double rand_area_max_,
  double rand_area_min_, Area area_, double expand_dis_, double path_resolution_,
@@ -20,6 +21,7 @@ RRTstar::RRTstar(Node& start_, Node& goal_, std::vector<Obstacle> obstacles_, do
 
 RRTstar::~RRTstar(){}
 
+//Calculating the distance between two Nodes
 double RRTstar::calcDistance(Node from, Node to)
 {
    double dx = to.x - from.x;
@@ -27,6 +29,7 @@ double RRTstar::calcDistance(Node from, Node to)
    return hypot(dx, dy);
 }
 
+//Calculating angle between two nodes
 double RRTstar::calcAngle(Node from, Node to)
 {
    double dx = to.x - from.x;
@@ -34,18 +37,13 @@ double RRTstar::calcAngle(Node from, Node to)
    return atan2(dx, dy);
 }
 
-double RRTstar::calcDistToGoal(double x, double y)
-{
-   double dx = goal.x - x;
-   double dy = goal.y - y;
-   return hypot(dx, dy);
-}
-
+//Calculating new cost
 double RRTstar::calcNewCost(Node& from, Node& to)
 {
     return from.cost + calcDistance(from, to);
 }
 
+//checking if Node colides with obstacle
 bool RRTstar::checkCollision(Node& node)
 {
    for (auto obstacle : obstacle_list)
@@ -58,11 +56,13 @@ bool RRTstar::checkCollision(Node& node)
    return true;
 }
 
+//checking if node is outside play area
 bool RRTstar::checkIfOutsidePlayArea(Node node)
 {
    return !(node.x < area.xmin || node.y < area.ymin || node.x > area.xmax || node.y > area.ymax)||area.Free;
 }
 
+//generating random node
 Node RRTstar::getRandomNode()
 {
       std::random_device rd;
@@ -74,6 +74,7 @@ Node RRTstar::getRandomNode()
    return rand_node;
 }   
 
+//getting nearest node out of list of existing node
 Node& RRTstar::getNearestNode(Node ran_Node)
 {
     double currdist,min_dist = std::numeric_limits<double>::max(), index=-1;
@@ -89,6 +90,7 @@ Node& RRTstar::getNearestNode(Node ran_Node)
     return node_list[index];
 }
 
+//building final path
 void RRTstar::generateFinalCourse(double goal_ind,std::vector<Node>& path)
 {
     path.push_back(goal);
@@ -101,7 +103,7 @@ void RRTstar::generateFinalCourse(double goal_ind,std::vector<Node>& path)
     path.push_back(node);
 }
 
-
+//updating cost to nodes in path
 void RRTstar::propagateCostToLeaves(Node& parent)
 {
    for (auto node : node_list)
@@ -114,6 +116,7 @@ void RRTstar::propagateCostToLeaves(Node& parent)
    }
 }
 
+//rewiring near nodes to new node
 void RRTstar::rewire(Node& new_node, std::vector<double> near_nodes_ind)
 {
    for (int index = 0; index < near_nodes_ind.size(); index++)
@@ -131,6 +134,7 @@ void RRTstar::rewire(Node& new_node, std::vector<double> near_nodes_ind)
    }
 }
 
+//checking if there is an existing node close enough to goal node
 void RRTstar::searchBestGoalNode(double& index)
 {
     std::vector<double> safe_goal_inds;
@@ -157,6 +161,7 @@ void RRTstar::searchBestGoalNode(double& index)
     }
 }
 
+//choosing new parent to new_node
 double RRTstar::chooseParent(double& index_, Node& new_node, std::vector<double>& near_node_inds)
 {
     if (near_node_inds.size() == 0)
@@ -182,6 +187,7 @@ double RRTstar::chooseParent(double& index_, Node& new_node, std::vector<double>
    return min_cost;
 }
 
+//finding near nodes in existing list of nodes
 std::vector<double> RRTstar::findNearNodes(Node new_node)
 {
    std::vector<double> near_inds;
@@ -198,6 +204,7 @@ std::vector<double> RRTstar::findNearNodes(Node new_node)
    return near_inds;
 }
 
+//generating new node between two nodes by steering according to angle and distance
 Node& RRTstar::steer(Node* from, Node* to, double extend_length)
 {
    Node new_node;
@@ -228,6 +235,7 @@ Node& RRTstar::steer(Node* from, Node* to, double extend_length)
    return new_node;
 }
  
+//planning the path
 void RRTstar::Planning(std::vector<Node>& path){
     double lastindex = -1, n_parent_index = -1;
    node_list.push_back(start);
@@ -244,14 +252,14 @@ void RRTstar::Planning(std::vector<Node>& path){
            double new_cost = chooseParent(n_parent_index,new_node, near_inds);
            if (new_cost != std::numeric_limits<double>::max())
            {
-               new_node = steer(&node_list[n_parent_index], &new_node,expand_dis);
-               new_node.cost = new_cost;
-               rewire(new_node, near_inds);
-               node_list.push_back(new_node);
+                   new_node = steer(&node_list[n_parent_index], &new_node,expand_dis);
+                   new_node.cost = new_cost;
+                   rewire(new_node, near_inds);
+                   node_list.push_back(new_node);
            }
            else
            {
-               node_list.push_back(new_node);
+                   node_list.push_back(new_node);
            }
        }
        searchBestGoalNode(lastindex);
@@ -271,3 +279,20 @@ void RRTstar::Planning(std::vector<Node>& path){
    std::cout << "Can't Find Path!" << std::endl;
 }
 
+bool lineCollisionCheck(Node& first, Node& second, std::vector<Obstacle>& obstacles)
+{
+    double x1, x2, y1, y2, a, b, c;
+    x1 = first.x;
+    x2 = second.x;
+    y1 = first.y;
+    y2 = second.y;
+    a = y2 - y1;
+    b = -(x2 - x1);
+    c = y2 * (x2 - x1) - x2 * (y2 - y1);
+    for (auto& obstacle : obstacles)
+    {
+        if (abs(a * obstacle.x + b * obstacle.y + c) / sqrt(a * a + b * b))
+            return false;
+    }
+    return true;
+}

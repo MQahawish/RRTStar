@@ -3,7 +3,7 @@ Area::Area() {
 	Free = true;
 	//checks if the area is not occupied
 	if (Free)
-	{
+    {
 		xmax = ymax = std::numeric_limits<double>::max();
 		xmin = ymin = std::numeric_limits<double>::min();
 	}

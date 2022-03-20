@@ -30,9 +30,8 @@ class RRTstar {
    void Planning(std::vector<Node>& path); //finding and planning a new path
    Node& steer(Node* A,Node* B,double extend_length = std::numeric_limits<double>::max()); //guiding to choosing the next node
    void generateFinalCourse(double goal_ind,std::vector<Node>& path);  //generates the final path
-   double calcDistToGoal(double x,double y);  //calculates distance from goal node
    Node getRandomNode();                //get random node 
-   Node& getNearestNode(Node ran_Node);  //gets the index of the nearest node
+   Node& getNearestNode(Node ran_Node);  //gets the nearest node
    bool checkIfOutsidePlayArea(Node node);  //checks if it's outside the configured Area
    bool checkCollision(Node& node);  //checks if there is any obstacles that collide with the path
    double calcDistance(Node from,Node to);  //calculate the distance between 2 nodes
