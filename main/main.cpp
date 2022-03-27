@@ -5,6 +5,7 @@ void draw_circle(double x, double y, double r, std::string color);
 
 void animation(RRTstar r, std::vector<Node> &path);
 
+//generating random obstacles with radius in range [1,radius] , becareful that generated obstacles might include start/goal!
 void generate_random_obstacles(double num, double radius, std::vector<Obstacle> &obstacles, Area &area);
 
 
@@ -30,16 +31,20 @@ int main() {
 
 
 void animation(RRTstar r, std::vector<Node> &path) {
+    
+    //drawing the goal node is a small circle
     draw_circle(r.goal.x, r.goal.y, 0.1, "-g");
     if (!r.area.Free) {
         plt::ylim(r.area.ymin, r.area.ymax);
         plt::xlim(r.area.xmin, r.area.xmax);
     }
+    
+    //drawing obstacles
     for (auto obstacle: r.obstacle_list) {
         draw_circle(obstacle.x, obstacle.y, obstacle.radius, "-b");
     }
 
-
+   //drawing all nodes that were computed in the process (might take a while!)
    for(auto node: r.node_list)
     {
            for (int j = 0; j < node.pathY.size(); j++) {
@@ -50,6 +55,7 @@ void animation(RRTstar r, std::vector<Node> &path) {
     }
 
 
+    //drawing final path found in green
     for (auto node: path) {
         for (int j = 0; j < node.pathY.size(); j++) {
             draw_circle(node.pathX[j], node.pathY[j], 0.01, "-g");
