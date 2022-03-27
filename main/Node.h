@@ -10,6 +10,7 @@ class Node
     double x;
     double y;
     double parent_index;
+    std::vector<double> pathX,pathY;
     double cost; 
     Node (double x_,double y_ );
     Node();

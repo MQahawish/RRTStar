@@ -1,5 +1,6 @@
 "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2021.3.4/bin/ninja/win/ninja.exe" -G Ninja C:\Users\97250\OneDrive\Documents\GitHub\RRTStar
--- Could NOT find Python3 (missing: Python3_NumPy_INCLUDE_DIRS NumPy) (found version "3.10.3")
+-- Found Python3: C:/Users/97250/AppData/Local/Programs/Python/Python310/python.exe (found version "3.10.3") found components: Interpreter Development Development.Module Development.Embed 
+-- Found Python3: C:/Users/97250/AppData/Local/Programs/Python/Python310/libs/python310.lib (found version "3.10.3") found components: NumPy Interpreter Development.Module 
 -- Configuring done
 -- Generating done
 -- Build files have been written to: C:/Users/97250/OneDrive/Documents/GitHub/RRTStar/cmake-build-debug

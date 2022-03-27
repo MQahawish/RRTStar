@@ -1,70 +1,87 @@
 #include "RRT.h"
-#include "matplotlibcpp.h"
-namespace plt = matplotlibcpp;
+#include <chrono>
 
-/****Parameters for RRT ******\
-* 1) starting Node
-* 2) goal Node
-* 3) Obstacle List
-* 4) upper limit for random number generating
-* 5) lower limit for random number generating
-* 6) play area
-* 7) expand destination
-* 8) path resolution - the value of pivoting from current node to another
-* 9) max number of iterations
-* 10) connect circle destination
-* 11) search until max number of iterations ?
-* */
+void draw_circle(double x, double y, double r, std::string color);
 
-/*
-*  recommendation : expand destination and connect circle =~  the smallest obstacle radius
-*  so that the algorithm doesn't jump over obstacles
-*/
+void animation(RRTstar r, std::vector<Node> &path);
 
-void draw_graph(std::vector<Node>& path, std::vector<Obstacle>& obstacles);
-void draw_circle(Obstacle& obstacle);
+void generate_random_obstacles(double num, double radius, std::vector<Obstacle> &obstacles, Area &area);
+
 
 int main() {
-	Node start(0, 0);
-	Node goal(5,5);
-	std::vector<Obstacle> obstacles;
-	obstacles.emplace_back(Obstacle(2,2,1));
-
-	Area area(0, 10, 0, 10, false);
-	RRTstar rrt_star(start, goal, obstacles, 10, 0, area, 0.5, 2, 100000,2, false);
-	std::vector<Node> path;
-	rrt_star.Planning(path);
-	reverse(path.begin(), path.end());
-	draw_graph(path, obstacles);
-	return 0;
+    Node start(50, 50);
+    Node goal(1, 1);
+    std::vector<Obstacle> obstacles;
+    Area area(0, 50, 0, 50, false);
+    generate_random_obstacles(10, 4, obstacles, area);
+    auto startTimer = std::chrono::high_resolution_clock::now();
+    RRTstar rrt_star(start, goal, obstacles, 100, -100, area, 2, 1,
+                     100000, 2, false, 10);
+    std::vector<Node> path;
+    rrt_star.Planning(path);
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(
+            std::chrono::high_resolution_clock::now() - startTimer);
+    std::cout << "duration: " << duration.count() << std::endl;
+    animation(rrt_star, path);
+    return 0;
 }
 
-void draw_graph(std::vector<Node>& path, std::vector<Obstacle>& obstacles)
-{
-	for (auto obstacle : obstacles)
-	{
-		draw_circle(obstacle);
-	}
-	std::vector<double> x;
-	std::vector<double> y;
-	for (auto const &node : path)
-	{
-		x.push_back(node.x);
-		y.push_back(node.y);
-	}
-	plt::plot(x, y, "-r");
+
+
+
+void animation(RRTstar r, std::vector<Node> &path) {
+    draw_circle(r.goal.x, r.goal.y, 0.1, "-g");
+    if (!r.area.Free) {
+        plt::ylim(r.area.ymin, r.area.ymax);
+        plt::xlim(r.area.xmin, r.area.xmax);
+    }
+    for (auto obstacle: r.obstacle_list) {
+        draw_circle(obstacle.x, obstacle.y, obstacle.radius, "-b");
+    }
+
+
+   for(auto node: r.node_list)
+    {
+           for (int j = 0; j < node.pathY.size(); j++) {
+               draw_circle(node.pathX[j], node.pathY[j], 0.01, "black");
+           }
+           plt::plot(node.pathX, node.pathY, "black");
+           plt::pause(0.0001);
+    }
+
+
+    for (auto node: path) {
+        for (int j = 0; j < node.pathY.size(); j++) {
+            draw_circle(node.pathX[j], node.pathY[j], 0.01, "-g");
+        }
+        plt::plot(node.pathX, node.pathY, "-g");
+        plt::pause(0.0001);
+    }
+    plt::show();
 }
 
-void draw_circle(Obstacle& obstacle)
-{
-	std::vector<double> x, y;
-	for (double deg = 0; deg <= 360; deg ++)
-	{
-		x.push_back(obstacle.x + obstacle.radius * cos(2 * 3.14 * (deg / 360)));
-		y.push_back(obstacle.y + obstacle.radius * sin(2 * 3.14 * (deg / 360)));
-	}
-	plt::plot(x, y, "-b");
+void draw_circle(double x, double y, double r, std::string color) {
+    std::vector<double> xs, ys;
+    for (double deg = 0; deg <= 360; deg += 0.1) {
+        xs.push_back(x + r * cos(2 * M_PI * (deg / 360)));
+        ys.push_back(y + r * sin(2 * M_PI * (deg / 360)));
+    }
+    plt::plot(xs, ys, color);
 }
+
+void generate_random_obstacles(double num, double radius, std::vector<Obstacle> &obstacles, Area &area) {
+    std::random_device rd;
+    std::uniform_real_distribution<double> x(area.xmin + radius, area.xmax - radius);
+    std::uniform_real_distribution<double> y(area.ymin + radius, area.ymax - radius);
+    std::uniform_real_distribution<double> r(1, radius);
+    std::mt19937 mt(rd());
+    for (int i = 0; i < num; i++) {
+        obstacles.emplace_back(x(mt), y(mt), r(mt));
+    }
+}
+
+
+
 
 
 

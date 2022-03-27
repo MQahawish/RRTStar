@@ -480,7 +480,7 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding Python3
-FIND_PACKAGE_MESSAGE_DETAILS_Python3:INTERNAL=[C:/Users/97250/AppData/Local/Programs/Python/Python310/python.exe][C:/Users/97250/AppData/Local/Programs/Python/Python310/libs/python310.lib][C:/Users/97250/AppData/Local/Programs/Python/Python310/include][cfound components: Interpreter Development.Embed ][v3.10.3()]
+FIND_PACKAGE_MESSAGE_DETAILS_Python3:INTERNAL=[C:/Users/97250/AppData/Local/Programs/Python/Python310/libs/python310.lib][C:/Users/97250/AppData/Local/Programs/Python/Python310/include][C:/Users/97250/AppData/Local/Programs/Python/Python310/Lib/site-packages/numpy/core/include][cfound components: NumPy Interpreter Development.Module ][v3.10.3()]
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files (x86)/PLOT
 _Python3_DEVELOPMENT_MODULE_SIGNATURE:INTERNAL=424603b1daf699003b5d0be2ede535d0
@@ -494,8 +494,9 @@ _Python3_INTERPRETER_SIGNATURE:INTERNAL=1f2d92c30a88efc00676a3631f3ed6c6
 _Python3_LIBRARY_DEBUG:INTERNAL=_Python3_LIBRARY_DEBUG-NOTFOUND
 //Path to a library.
 _Python3_LIBRARY_RELEASE:INTERNAL=C:/Users/97250/AppData/Local/Programs/Python/Python310/libs/python310.lib
+_Python3_NUMPY_SIGNATURE:INTERNAL=802bc2e139917bf9e27a3f8fc27a7cc0
 //Path to a file.
-_Python3_NumPy_INCLUDE_DIR:INTERNAL=_Python3_NumPy_INCLUDE_DIR-NOTFOUND
+_Python3_NumPy_INCLUDE_DIR:INTERNAL=C:/Users/97250/AppData/Local/Programs/Python/Python310/Lib/site-packages/numpy/core/include
 //Path to a library.
 _Python3_RUNTIME_LIBRARY_RELEASE:INTERNAL=C:/Users/97250/AppData/Local/Programs/Python/Python310/python310.dll
 

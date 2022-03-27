@@ -8,6 +8,8 @@ Node::Node() {
 Node::Node( double x_, double y_ ) {
     x = x_;
     y = y_;
+    pathX.push_back(x);
+    pathY.push_back(y);
     parent_index = -1;
     cost=0;
   }
@@ -26,6 +28,8 @@ Node::Node( double x_, double y_ ) {
      y = node.y;
      parent_index = node.parent_index;
      cost = node.cost;
+     pathX=node.pathX;
+     pathY=node.pathY;
      return *this;
  }
 

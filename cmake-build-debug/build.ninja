@@ -50,42 +50,37 @@ cmake_ninja_workdir = C$:/Users/97250/OneDrive/Documents/GitHub/RRTStar/cmake-bu
 build cmake_object_order_depends_target_pathplanning: phony || CMakeFiles/pathplanning.dir
 
 build CMakeFiles/pathplanning.dir/main/main.cpp.obj: CXX_COMPILER__pathplanning_Debug C$:/Users/97250/OneDrive/Documents/GitHub/RRTStar/main/main.cpp || cmake_object_order_depends_target_pathplanning
-  DEFINES = -DWITHOUT_NUMPY
   DEP_FILE = CMakeFiles\pathplanning.dir\main\main.cpp.obj.d
   FLAGS = -g
-  INCLUDES = -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/./matplotlib_cpp -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/examples -isystem C:/Users/97250/AppData/Local/Programs/Python/Python310/include
+  INCLUDES = -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/./matplotlib_cpp -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/examples -isystem C:/Users/97250/AppData/Local/Programs/Python/Python310/include -isystem C:/Users/97250/AppData/Local/Programs/Python/Python310/Lib/site-packages/numpy/core/include
   OBJECT_DIR = CMakeFiles\pathplanning.dir
   OBJECT_FILE_DIR = CMakeFiles\pathplanning.dir\main
 
 build CMakeFiles/pathplanning.dir/main/Area.cpp.obj: CXX_COMPILER__pathplanning_Debug C$:/Users/97250/OneDrive/Documents/GitHub/RRTStar/main/Area.cpp || cmake_object_order_depends_target_pathplanning
-  DEFINES = -DWITHOUT_NUMPY
   DEP_FILE = CMakeFiles\pathplanning.dir\main\Area.cpp.obj.d
   FLAGS = -g
-  INCLUDES = -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/./matplotlib_cpp -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/examples -isystem C:/Users/97250/AppData/Local/Programs/Python/Python310/include
+  INCLUDES = -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/./matplotlib_cpp -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/examples -isystem C:/Users/97250/AppData/Local/Programs/Python/Python310/include -isystem C:/Users/97250/AppData/Local/Programs/Python/Python310/Lib/site-packages/numpy/core/include
   OBJECT_DIR = CMakeFiles\pathplanning.dir
   OBJECT_FILE_DIR = CMakeFiles\pathplanning.dir\main
 
 build CMakeFiles/pathplanning.dir/main/Node.cpp.obj: CXX_COMPILER__pathplanning_Debug C$:/Users/97250/OneDrive/Documents/GitHub/RRTStar/main/Node.cpp || cmake_object_order_depends_target_pathplanning
-  DEFINES = -DWITHOUT_NUMPY
   DEP_FILE = CMakeFiles\pathplanning.dir\main\Node.cpp.obj.d
   FLAGS = -g
-  INCLUDES = -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/./matplotlib_cpp -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/examples -isystem C:/Users/97250/AppData/Local/Programs/Python/Python310/include
+  INCLUDES = -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/./matplotlib_cpp -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/examples -isystem C:/Users/97250/AppData/Local/Programs/Python/Python310/include -isystem C:/Users/97250/AppData/Local/Programs/Python/Python310/Lib/site-packages/numpy/core/include
   OBJECT_DIR = CMakeFiles\pathplanning.dir
   OBJECT_FILE_DIR = CMakeFiles\pathplanning.dir\main
 
 build CMakeFiles/pathplanning.dir/main/Obstacle.cpp.obj: CXX_COMPILER__pathplanning_Debug C$:/Users/97250/OneDrive/Documents/GitHub/RRTStar/main/Obstacle.cpp || cmake_object_order_depends_target_pathplanning
-  DEFINES = -DWITHOUT_NUMPY
   DEP_FILE = CMakeFiles\pathplanning.dir\main\Obstacle.cpp.obj.d
   FLAGS = -g
-  INCLUDES = -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/./matplotlib_cpp -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/examples -isystem C:/Users/97250/AppData/Local/Programs/Python/Python310/include
+  INCLUDES = -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/./matplotlib_cpp -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/examples -isystem C:/Users/97250/AppData/Local/Programs/Python/Python310/include -isystem C:/Users/97250/AppData/Local/Programs/Python/Python310/Lib/site-packages/numpy/core/include
   OBJECT_DIR = CMakeFiles\pathplanning.dir
   OBJECT_FILE_DIR = CMakeFiles\pathplanning.dir\main
 
 build CMakeFiles/pathplanning.dir/main/RRT.cpp.obj: CXX_COMPILER__pathplanning_Debug C$:/Users/97250/OneDrive/Documents/GitHub/RRTStar/main/RRT.cpp || cmake_object_order_depends_target_pathplanning
-  DEFINES = -DWITHOUT_NUMPY
   DEP_FILE = CMakeFiles\pathplanning.dir\main\RRT.cpp.obj.d
   FLAGS = -g
-  INCLUDES = -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/./matplotlib_cpp -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/examples -isystem C:/Users/97250/AppData/Local/Programs/Python/Python310/include
+  INCLUDES = -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/./matplotlib_cpp -IC:/Users/97250/OneDrive/Documents/GitHub/RRTStar/examples -isystem C:/Users/97250/AppData/Local/Programs/Python/Python310/include -isystem C:/Users/97250/AppData/Local/Programs/Python/Python310/Lib/site-packages/numpy/core/include
   OBJECT_DIR = CMakeFiles\pathplanning.dir
   OBJECT_FILE_DIR = CMakeFiles\pathplanning.dir\main
 
